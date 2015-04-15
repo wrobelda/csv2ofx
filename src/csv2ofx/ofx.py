@@ -35,7 +35,7 @@ def export ( path, mapping, grid):
     out=open(path,'w')
     
     out.write (
-        """
+        """ENCODING:UTF-8
         <OFX>
             <SIGNONMSGSRSV1>
                <SONRS>
