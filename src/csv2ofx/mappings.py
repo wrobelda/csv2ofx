@@ -1,4 +1,5 @@
 
+# -*- coding: utf-8 -*-
 # mapping tells the next functions where to get the data for each row
 # each key in a mapping must return a function that takes
 # the current row and the SimpleCSVGrid object
@@ -76,6 +77,7 @@
 """
 
 from csvutils import *
+import re
 
 
 def yodlee_dscr(row,grid):
@@ -94,9 +96,39 @@ def yodlee_memo(row,grid):
         return "%s - %s - %s" % ( memo, cat, cls)
     return "%s - %s" % ( cat, cls )
 
-def toOFXDate(date):
+def fromUStoOFXDate(date):
     yearlen=len(date.split('/')[-1])
     return datetime.strptime(date,yearlen==2 and '%m/%d/%y' or '%m/%d/%Y').strftime('%Y%m%d')
+
+def fromEUtoOFXDate(date):
+    yearlen=len(date.split('-')[-1])
+    return datetime.strptime(date,yearlen==2 and '%d-%m-%y' or '%d-%m-%Y').strftime('%Y%m%d')
+
+def tmobilepl_amount(row,grid):
+    amount=fromCSVCol(row,grid,'Kwota').split(' ')[0]
+    currency=fromCSVCol(row,grid,'Kwota').split(' ')[1]
+    memo=fromCSVCol(row,grid,'Tytuł płatności')
+    match=re.search('Kurs wymiany: (?P<currate>[0-9.]+)',memo)
+    if match:
+        currate = match.group('currate')
+        amount = float(amount) * float(currate)
+    return amount
+
+tmobilepl = {
+
+    'OFX':{
+        'skip':lambda row,grid: False,
+        'BANKID':lambda row,grid: "T-Mobile",
+        'ACCTID':lambda row,grid: fromCSVCol(row,grid,'Rachunek'), 
+        'DTPOSTED':lambda row,grid: fromEUtoOFXDate(fromCSVCol(row,grid,'Data')),
+        'TRNAMT':lambda row,grid: tmobilepl_amount(row, grid),
+        'FITID':lambda row,grid: '',
+        'PAYEE':lambda row,grid: fromCSVCol(row,grid,'Nazwa odbiorcy/nadawcy'),
+        'MEMO':lambda row,grid: fromCSVCol(row,grid,'Tytuł płatności'),
+        'CURDEF':lambda row,grid: fromCSVCol(row,grid,'Kwota').split(' ')[1],
+        'CHECKNUM':lambda row,grid: '' 
+    },
+}
 
 yodlee = {
 
@@ -104,7 +136,7 @@ yodlee = {
         'skip':lambda row,grid: fromCSVCol(row,grid,'Split Type') == 'Split',
         'BANKID':lambda row,grid: fromCSVCol(row,grid,'Account Name').split(' - ')[0],
         'ACCTID':lambda row,grid: fromCSVCol(row,grid,'Account Name').split(' - ')[-1], 
-        'DTPOSTED':lambda row,grid: toOFXDate(fromCSVCol(row,grid,'Date')),
+        'DTPOSTED':lambda row,grid: fromUStoOFXDate(fromCSVCol(row,grid,'Date')),
         'TRNAMT':lambda row,grid: fromCSVCol(row,grid,'Amount'),
         'FITID':lambda row,grid: fromCSVCol(row,grid,'Transaction Id'),
         'PAYEE':lambda row,grid: yodlee_dscr(row,grid),
@@ -131,7 +163,7 @@ cu = {
         'skip':lambda row,grid: False,
         'BANKID':lambda row,grid: 'Credit Union',
         'ACCTID':lambda row,grid: 'My Account',
-        'DTPOSTED':lambda row,grid: toOFXDate(fromCSVCol(row,grid,'Date')),
+        'DTPOSTED':lambda row,grid: fromUStoOFXDate(fromCSVCol(row,grid,'Date')),
         'TRNAMT':lambda row,grid: fromCSVCol(row,grid,'Amount').replace('$',''),
         'FITID':lambda row,grid: row,
         'PAYEE':lambda row,grid: fromCSVCol(row,grid,'Description'),
@@ -153,7 +185,7 @@ cu = {
     }
 }
 
-def ubs_toOFXDate(date):
+def ubs_fromUStoOFXDate(date):
     return datetime.strptime(date,'%d.%m.%Y').strftime('%Y%m%d')
 
 def ubs_toQIFDate(date):
@@ -189,7 +221,7 @@ ubs = {
         'skip':lambda row,grid: False,
         'BANKID':lambda row,grid: 'UBS',
         'ACCTID':lambda row,grid: fromCSVCol(row,grid,'Description'),
-        'DTPOSTED':lambda row,grid: ubs_toOFXDate(fromCSVCol(row,grid,'Value date')),
+        'DTPOSTED':lambda row,grid: ubs_fromUStoOFXDate(fromCSVCol(row,grid,'Value date')),
         'TRNAMT':lambda row,grid: ubs_toAmount(fromCSVCol(row,grid,'Debit'),fromCSVCol(row,grid,'Credit')),
         'FITID':lambda row,grid: row,
         'PAYEE':lambda row,grid: ubs_toPayee(fromCSVCol(row,grid,'Entered by'),fromCSVCol(row,grid,'Recipient')),
@@ -231,7 +263,7 @@ msmoneyrep = {
         'skip':lambda row,grid: fromCSVCol(row,grid,'Split Type') == 'Split',
         'BANKID':lambda row,grid: fromCSVCol(row,grid,'Account Name').split(' - ')[0],
         'ACCTID':lambda row,grid: fromCSVCol(row,grid,'Account Name').split(' - ')[-1],
-        'DTPOSTED':lambda row,grid: toOFXDate(fromCSVCol(row,grid,'Date')),
+        'DTPOSTED':lambda row,grid: fromUStoOFXDate(fromCSVCol(row,grid,'Date')),
         'TRNAMT':lambda row,grid: fromCSVCol(row,grid,'Amount'),
         'FITID':lambda row,grid: fromCSVCol(row,grid,'Num'),
         'PAYEE':lambda row,grid: fromCSVCol(row,grid,'Payee'),
@@ -243,7 +275,7 @@ msmoneyrep = {
         'split':lambda row,grid: fromCSVCol(row,grid,'Date') == '', #split should be determined by absence of date and other fields.
         'Account':lambda row,grid: fromCSVCol(row,grid,'Account'),
         'AccountDscr':lambda row,grid: fromCSVCol(row,grid,'Account'),
-        'Date':lambda row,grid: toOFXDate(fromCSVCol(row,grid,'Date')),
+        'Date':lambda row,grid: fromUStoOFXDate(fromCSVCol(row,grid,'Date')),
         'Payee':lambda row,grid: parse_payee(row,grid),
         'Memo':lambda row,grid: fromCSVCol(row,grid,'C') + ': ' + fromCSVCol(row,grid,'Memo'),
         'Category':lambda row,grid: fromCSVCol(row,grid,'Category'),
@@ -253,4 +285,4 @@ msmoneyrep = {
     }
 }
 
-all_mappings = {'Yodlee':yodlee, 'Credit Union':cu, 'UBS':ubs, 'MS Money Report (CSV)':msmoneyrep }
+all_mappings = {'T-Mobile Konto':tmobilepl, 'Yodlee':yodlee, 'Credit Union':cu, 'UBS':ubs, 'MS Money Report (CSV)':msmoneyrep}
