@@ -24,10 +24,16 @@ class SimpleCSVGrid():
         return self.grid_cols
 
     def IsEmptyCell(self, row, col):
-        return len(self.grid_contents[row + 1][col]) == 0
+        try:
+            return len(self.grid_contents[row + 1][col]) == 0
+        except IndexError:
+            return False
 
     def GetValue(self, row, col):
-        return self.grid_contents[row + 1][col]
+        try:
+            return self.grid_contents[row + 1][col]
+        except IndexError:
+            return ""
 
     def GetColLabelValue(self, col):
         return self.grid_contents[0][col]
