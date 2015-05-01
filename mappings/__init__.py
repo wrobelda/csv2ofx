@@ -40,6 +40,9 @@
     OFX export uses these keys:
 
         skip: not used in export but tells the exporter to skip a row.  Useful for split data (ofx can't handle split data).
+        multiline: tells the exporter to treat the line as a continuation of the previous line's transaction. Values are
+                    concatenated if same key is used more than once per transaction. Useful for badly formatted statements
+                    coming from the banks whose IT employees can't comprehend a concept as simple as CSV file.
         BANKID: the id of the bank
         ACCTID: the account id
         DTPOSTED: date the transaction was posted (YYYYMMDD)

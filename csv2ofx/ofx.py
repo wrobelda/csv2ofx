@@ -15,19 +15,25 @@ def export(out, mapping, grid):
         # which account            
         if mapping['skip'](row, grid): continue
 
-        uacct = "%s-%s" % (mapping['BANKID'](row, grid), mapping['ACCTID'](row, grid))
-        acct = accounts.setdefault(uacct, {})
+        if not mapping['multiline'](row, grid):
+            uacct = "%s-%s" % (mapping['BANKID'](row, grid), mapping['ACCTID'](row, grid))
+            acct = accounts.setdefault(uacct, {})
 
-        acct['BANKID'] = mapping['BANKID'](row, grid)
-        acct['ACCTID'] = mapping['ACCTID'](row, grid)
-        acct['TODAY'] = today
-        currency = acct.setdefault('CURDEF', mapping['CURDEF'](row, grid))
-        if currency != mapping['CURDEF'](row, grid):
-            print "Currency not the same."
-        trans = acct.setdefault('trans', [])
-        tran = dict([(k, mapping[k](row, grid)) for k in ['DTPOSTED', 'TRNAMT', 'FITID', 'PAYEE', 'MEMO', 'CHECKNUM']])
+            acct['BANKID'] = mapping['BANKID'](row, grid)
+            acct['ACCTID'] = mapping['ACCTID'](row, grid)
+            acct['TODAY'] = today
+            currency = acct.setdefault('CURDEF', mapping['CURDEF'](row, grid))
+            if currency != mapping['CURDEF'](row, grid):
+                print "Currency not the same."
+            trans = acct.setdefault('trans', [])
+            tran = {}
+
+        tran.update({k: tran.get(k, "") + mapping[k](row, grid) for k in
+                     ['DTPOSTED', 'TRNAMT', 'FITID', 'PAYEE', 'MEMO', 'CHECKNUM']})
         tran['TRNTYPE'] = tran['TRNAMT'] > 0 and 'CREDIT' or 'DEBIT'
-        trans.append(tran)
+
+        if not mapping['multiline'](row, grid):
+            trans.append(tran)
 
 
     # output
