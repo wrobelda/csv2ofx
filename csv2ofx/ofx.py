@@ -1,40 +1,38 @@
-
 from datetime import datetime
 import time
 
-def export ( path, mapping, grid):
+
+def export(out, mapping, grid):
     """
         path: path to save the file
-        mapping: mapping selected from mappings.py
+        mapping: mapping selected from mappings package
         data: grid with csv data from csvutils.py
     """
-     
-    accounts={}
+
+    accounts = {}
     today = datetime.now().strftime('%Y%m%d')
     for row in range(grid.GetNumberRows()):
         # which account            
-        if mapping['skip'](row,grid): continue
-        
-        uacct="%s-%s" % (mapping['BANKID'](row,grid), mapping['ACCTID'](row,grid))
-        acct = accounts.setdefault(uacct,{})
-        
-        acct['BANKID'] = mapping['BANKID'](row,grid)
-        acct['ACCTID'] = mapping['ACCTID'](row,grid)
+        if mapping['skip'](row, grid): continue
+
+        uacct = "%s-%s" % (mapping['BANKID'](row, grid), mapping['ACCTID'](row, grid))
+        acct = accounts.setdefault(uacct, {})
+
+        acct['BANKID'] = mapping['BANKID'](row, grid)
+        acct['ACCTID'] = mapping['ACCTID'](row, grid)
         acct['TODAY'] = today
-        currency = acct.setdefault('CURDEF',mapping['CURDEF'](row,grid))
-        if currency != mapping['CURDEF'](row,grid):
+        currency = acct.setdefault('CURDEF', mapping['CURDEF'](row, grid))
+        if currency != mapping['CURDEF'](row, grid):
             print "Currency not the same."
-        trans=acct.setdefault('trans',[])
-        tran=dict([(k,mapping[k](row,grid)) for k in ['DTPOSTED','TRNAMT','FITID','PAYEE','MEMO','CHECKNUM']])
-        tran['TRNTYPE'] = tran['TRNAMT'] >0 and 'CREDIT' or 'DEBIT'
+        trans = acct.setdefault('trans', [])
+        tran = dict([(k, mapping[k](row, grid)) for k in ['DTPOSTED', 'TRNAMT', 'FITID', 'PAYEE', 'MEMO', 'CHECKNUM']])
+        tran['TRNTYPE'] = tran['TRNAMT'] > 0 and 'CREDIT' or 'DEBIT'
         trans.append(tran)
-        
-        
+
+
     # output
-    
-    out=open(path,'w')
-    
-    out.write (
+
+    out.write(
         """ENCODING:UTF-8
         <OFX>
             <SIGNONMSGSRSV1>
@@ -51,10 +49,10 @@ def export ( path, mapping, grid):
                 <TRNUID>%(TRNUID)d</TRNUID>
                 <STATUS><CODE>0</CODE><SEVERITY>INFO</SEVERITY></STATUS>
                 
-        """ % {'DTSERVER':today,
-              'TRNUID':int(time.mktime(time.localtime()))}
+        """ % {'DTSERVER': today,
+               'TRNUID': int(time.mktime(time.localtime()))}
     )
-        
+
     for acct in accounts.values():
         out.write(
             """
@@ -71,9 +69,9 @@ def export ( path, mapping, grid):
                     
             """ % acct
         )
-        
+
         for tran in acct['trans']:
-            out.write (
+            out.write(
                 """
                         <STMTTRN>
                             <TRNTYPE>%(TRNTYPE)s</TRNTYPE>
@@ -83,11 +81,11 @@ def export ( path, mapping, grid):
                             
                 """ % tran
             )
-            if tran['CHECKNUM'] is not None and len(tran['CHECKNUM'])>0:
+            if tran['CHECKNUM'] is not None and len(tran['CHECKNUM']) > 0:
                 out.write(
-                """
-                            <CHECKNUM>%(CHECKNUM)s</CHECKNUM>
-                """ % tran
+                    """
+                                <CHECKNUM>%(CHECKNUM)s</CHECKNUM>
+                    """ % tran
                 )
             out.write(
                 """
@@ -100,8 +98,8 @@ def export ( path, mapping, grid):
                         </STMTTRN>
                 """
             )
-        
-        out.write (
+
+        out.write(
             """
                 </BANKTRANLIST>
                 <LEDGERBAL>
@@ -111,14 +109,14 @@ def export ( path, mapping, grid):
             </STMTRS>
             """ % today
         )
-        
-    out.write ( "</STMTTRNRS></BANKMSGSRSV1></OFX>" )
+
+    out.write("</STMTTRNRS></BANKMSGSRSV1></OFX>")
     out.close()
-    print "Exported %s" % path
-    
-    
-    
-    
+
+
+def toOFXDate(date):
+    yearlen = len(date.split('/')[-1])
+    return datetime.strptime(date, yearlen == 2 and '%m/%d/%y' or '%m/%d/%Y').strftime('%Y%m%d')
 
     
     
