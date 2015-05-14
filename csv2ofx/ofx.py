@@ -39,7 +39,8 @@ def export(out, mapping, grid):
     # output
 
     out.write(
-        """ENCODING:UTF-8
+        """DATA:OFXSGML
+        ENCODING:UTF-8
         <OFX>
             <SIGNONMSGSRSV1>
                <SONRS>
