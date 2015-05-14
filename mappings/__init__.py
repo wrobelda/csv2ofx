@@ -34,8 +34,9 @@
 
     Special parameters for import use these keys:
 
-        delimiters: delimiter for CSV, default to ','
-        skip_last: number of lines to skip at the end of the CSV file, default to 0
+        delimiters (default: ','): delimiter for CSV
+        skip_last (default: 0): number of lines to skip at the end of the CSV file
+        has_header (default: True): is the first line of the CSV a header?
 
     OFX export uses these keys:
 
@@ -64,7 +65,7 @@
         Category: the category.  Imports as the expense account usually.
         Class: optional class data.  Return '' if unused
         Amount: transaction amount
-        Number: check number 
+        Number: check number
 
     mapping dict format
     {'_params':<special parameters>, 'QIF':<the qif mapping>, 'OFX':<the ofx mapping>}
