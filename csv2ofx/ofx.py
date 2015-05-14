@@ -12,7 +12,7 @@ def export(out, mapping, grid):
     accounts = {}
     today = datetime.now().strftime('%Y%m%d')
     for row in range(grid.GetNumberRows()):
-        # which account            
+        # which account
         if mapping['skip'](row, grid): continue
 
         if not mapping['multiline'](row, grid):
@@ -30,7 +30,7 @@ def export(out, mapping, grid):
 
         tran.update({k: tran.get(k, "") + mapping[k](row, grid) for k in
                      ['DTPOSTED', 'TRNAMT', 'FITID', 'PAYEE', 'MEMO', 'CHECKNUM']})
-        tran['TRNTYPE'] = tran['TRNAMT'] > 0 and 'CREDIT' or 'DEBIT'
+        tran['TRNTYPE'] = float(tran['TRNAMT']) > 0 and 'CREDIT' or 'DEBIT'
 
         if not mapping['multiline'](row, grid):
             trans.append(tran)
@@ -54,7 +54,7 @@ def export(out, mapping, grid):
             <BANKMSGSRSV1><STMTTRNRS>
                 <TRNUID>%(TRNUID)d</TRNUID>
                 <STATUS><CODE>0</CODE><SEVERITY>INFO</SEVERITY></STATUS>
-                
+
         """ % {'DTSERVER': today,
                'TRNUID': int(time.mktime(time.localtime()))}
     )
@@ -72,7 +72,7 @@ def export(out, mapping, grid):
                 <BANKTRANLIST>
                     <DTSTART>%(TODAY)s</DTSTART>
                     <DTEND>%(TODAY)s</DTEND>
-                    
+
             """ % acct
         )
 
@@ -84,7 +84,7 @@ def export(out, mapping, grid):
                             <DTPOSTED>%(DTPOSTED)s</DTPOSTED>
                             <TRNAMT>%(TRNAMT)s</TRNAMT>
                             <FITID>%(FITID)s</FITID>
-                            
+
                 """ % tran
             )
             if tran['CHECKNUM'] is not None and len(tran['CHECKNUM']) > 0:
@@ -123,7 +123,3 @@ def export(out, mapping, grid):
 def toOFXDate(date):
     yearlen = len(date.split('/')[-1])
     return datetime.strptime(date, yearlen == 2 and '%m/%d/%y' or '%m/%d/%Y').strftime('%Y%m%d')
-
-    
-    
-    
