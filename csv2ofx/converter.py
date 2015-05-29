@@ -22,7 +22,11 @@ class Converter():
             skip_last = mapping['_params']['skip_last']
         except:
             skip_last = 0
-        self.grid_table = SimpleCSVGrid(csv_file, delimiter, skip_last)
+        try:
+            has_header = mapping['_params']['has_header']
+        except:
+            has_header = True
+        self.grid_table = SimpleCSVGrid(csv_file, delimiter, skip_last, has_header)
 
 
     def ExportFiles(self, mapping_name, output_format, output_file):
@@ -39,5 +43,3 @@ class Converter():
             raise Exception("Unhandled export format: %s" % format)
 
         csv2ofx_export(output_file, mapping, grid)
-
-
