@@ -38,7 +38,7 @@ class SimpleCSVGrid():
         try:
             return len(self.grid_contents[self.GetRowNumber(row)][col]) == 0
         except IndexError:
-            return False
+            return True
 
     def GetValue(self, row, col):
         try:
