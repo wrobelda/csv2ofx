@@ -14,8 +14,10 @@ def export(out, mapping, grid):
     for row in range(grid.GetNumberRows()):
         # which account
         if mapping['skip'](row, grid): continue
+        
+        is_multiline_transaction = 'multiline' in mapping and mapping['multiline'](row, grid)
 
-        if not mapping['multiline'](row, grid):
+        if not is_multiline_transaction:
             uacct = "%s-%s" % (mapping['BANKID'](row, grid), mapping['ACCTID'](row, grid))
             acct = accounts.setdefault(uacct, {})
 
@@ -32,7 +34,7 @@ def export(out, mapping, grid):
                      ['DTPOSTED', 'TRNAMT', 'FITID', 'PAYEE', 'MEMO', 'CHECKNUM']})
         tran['TRNTYPE'] = float(tran['TRNAMT']) > 0 and 'CREDIT' or 'DEBIT'
 
-        if not mapping['multiline'](row, grid):
+        if not is_multiline_transaction:
             trans.append(tran)
 
 
