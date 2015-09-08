@@ -14,7 +14,6 @@ def export(out, mapping, grid):
     for row in range(grid.GetNumberRows()):
         # which account
         if mapping['skip'](row, grid): continue
-        
         is_multiline_transaction = 'multiline' in mapping and mapping['multiline'](row, grid)
 
         if not is_multiline_transaction:
@@ -41,8 +40,8 @@ def export(out, mapping, grid):
     # output
 
     out.write(
-        """DATA:OFXSGML
-        ENCODING:UTF-8
+"""DATA:OFXSGML
+ENCODING:UTF-8
         <OFX>
             <SIGNONMSGSRSV1>
                <SONRS>
