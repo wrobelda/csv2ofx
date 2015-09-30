@@ -18,10 +18,12 @@ def is_multiline(row, grid):
 
 def get_amount(row, grid):
     amount = fromCSVCol(row, grid, 'Kwota')
+    amount_normalized = str(float(amount.replace(',', '.')))
 
-    if not amount and is_multiline(row, grid):
-        amount = fromCSVCol(row, grid, 'Użytkownik')
-    return amount
+    if not amount_normalized and is_multiline(row, grid):
+        amount_normalized = fromCSVCol(row, grid, 'Użytkownik')
+
+    return amount_normalized
 
 
 raiffeisenpolbank_ccard = {
@@ -42,6 +44,28 @@ raiffeisenpolbank_ccard = {
         'FITID': lambda row, grid: '',
         'PAYEE': lambda row, grid: fromCSVCol(row, grid, 'Miejsce transakcji') if not is_multiline(row, grid) else '',
         'MEMO': lambda row, grid: fromCSVCol(row, grid, 'Numer karty') if is_multiline(row, grid) else '',
+        'CURDEF': lambda row, grid: 'PLN',
+        'CHECKNUM': lambda row, grid: ''
+    },
+}
+
+raiffeisenpolbank_current = {
+
+    '_params': {
+        'delimiter': ';',
+        'encoding': 'windows-1250',
+    },
+
+    'OFX': {
+        'skip': lambda row, grid: False,
+        'multiline': lambda row, grid: False,
+        'BANKID': lambda row, grid: "Raiffeisen Polbank",
+        'ACCTID': lambda row, grid: "Raiffeisen Polbank Konto",
+        'DTPOSTED': lambda row, grid: fromEUtoOFXDate(fromCSVCol(row, grid, 'Data transakcji')),
+        'TRNAMT': lambda row, grid: get_amount(row, grid),
+        'FITID': lambda row, grid: '',
+        'PAYEE': lambda row, grid: fromCSVCol(row, grid, 'Nadawca / Odbiorca'),
+        'MEMO': lambda row, grid: fromCSVCol(row, grid, 'Tytuł'),
         'CURDEF': lambda row, grid: 'PLN',
         'CHECKNUM': lambda row, grid: ''
     },
