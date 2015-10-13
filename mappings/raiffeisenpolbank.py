@@ -6,6 +6,8 @@ from datetime import datetime
 
 from csv2ofx.csvutils import fromCSVCol
 
+import ast
+
 
 def fromEUtoOFXDate(date):
     yearlen = len(date.split('-')[-1])
@@ -18,10 +20,11 @@ def is_multiline(row, grid):
 
 def get_amount(row, grid):
     amount = fromCSVCol(row, grid, 'Kwota')
-    amount_normalized = str(float(amount.replace(',', '.')))
 
-    if not amount_normalized and is_multiline(row, grid):
-        amount_normalized = fromCSVCol(row, grid, 'Użytkownik')
+    if not amount and is_multiline(row, grid):
+        amount = fromCSVCol(row, grid, 'Użytkownik')
+
+    amount_normalized = amount.replace(',', '.')
 
     return amount_normalized
 
