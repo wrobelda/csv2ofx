@@ -31,7 +31,7 @@ def export(out, mapping, grid):
 
         tran.update({k: tran.get(k, "") + mapping[k](row, grid) for k in
                      ['DTPOSTED', 'TRNAMT', 'FITID', 'PAYEE', 'MEMO', 'CHECKNUM']})
-        tran['TRNTYPE'] = float(tran['TRNAMT']) > 0 and 'CREDIT' or 'DEBIT'
+        tran['TRNTYPE'] = tran['TRNAMT'] and float(tran['TRNAMT']) > 0 and 'CREDIT' or 'DEBIT'
 
         if not is_multiline_transaction:
             trans.append(tran)
