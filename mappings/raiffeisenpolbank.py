@@ -28,6 +28,12 @@ def get_amount(row, grid):
 
     return amount_normalized
 
+def invert_value(value):
+    try:
+        return str(float(value) * -1)
+    except ValueError:
+        return value
+
 
 raiffeisenpolbank_ccard = {
 
@@ -43,7 +49,7 @@ raiffeisenpolbank_ccard = {
         'ACCTID': lambda row, grid: fromCSVCol(row, grid, 'Numer karty') if not is_multiline(row, grid) else '',
         'DTPOSTED': lambda row, grid: fromEUtoOFXDate(fromCSVCol(row, grid, 'Data transakcji')) if not is_multiline(row,
                                                                                                                     grid) else '',
-        'TRNAMT': lambda row, grid: get_amount(row, grid),
+        'TRNAMT': lambda row, grid: invert_value(get_amount(row, grid)),
         'FITID': lambda row, grid: '',
         'PAYEE': lambda row, grid: fromCSVCol(row, grid, 'Miejsce transakcji') if not is_multiline(row, grid) else '',
         'MEMO': lambda row, grid: fromCSVCol(row, grid, 'Numer karty') if is_multiline(row, grid) else '',
