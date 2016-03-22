@@ -1,1 +1,1 @@
-__all__ = ["converter", "csvutils", "ofx", "qif"]
+__all__ = ["converter", "csvutils", "ofx", "qif", "utils"]
