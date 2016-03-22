@@ -85,8 +85,9 @@ from yodlee import yodlee
 from tmobilekonto import tmobilepl
 from raiffeisenpolbank import raiffeisenpolbank_ccard, raiffeisenpolbank_current
 from abnamro import abnamro
+from venmo import venmo
 
 all_mappings = {'T-Mobile Konto': tmobilepl, 'Yodlee': yodlee, 'Credit Union': cu, 'UBS': ubs,
                 'MS Money Report (CSV)': msmoneyrep, 'Raiffeisen Polbank Karta': raiffeisenpolbank_ccard,
                 'Raiffeisen Polbank Konto': raiffeisenpolbank_current,
-                'ABN Amro': abnamro}
+                'ABN Amro': abnamro, 'Venmo': venmo}
