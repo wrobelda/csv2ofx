@@ -11,12 +11,17 @@ def toOFXDate(date):
     return datetime.strptime(date, "%Y-%m-%d %H:%M:%S %Z").strftime('%Y%m%d')
 
 def getPayee(row, grid):
-    sideOne = "me"
-    sideTwo = fromCSVCol(row, grid, 'Name')
-    return '%s to %s' % ((sideOne, sideTwo) if float(getAmount(row, grid)) < 0 else (sideTwo, sideOne))
+    me = "me"
+    them = fromCSVCol(row, grid, 'Name')
+    payee, receiver = (them, me) if isReceived(row, grid) else (me, them)
+    return '{payee} to {receiver}'.format(**locals())
 
 def getAmount(row, grid):
     return fromCSVCol(row, grid, 'Amount').replace('$', '')
+
+def isReceived(row, grid):
+    return True if float(getAmount(row, grid)) > 0 else False
+
 
 squarecash = {
 
