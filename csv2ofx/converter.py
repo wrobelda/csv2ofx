@@ -26,7 +26,11 @@ class Converter():
             has_header = mapping['_params']['has_header']
         except:
             has_header = True
-        self.grid_table = SimpleCSVGrid(csv_file, delimiter, skip_last, has_header)
+        try:
+            skip_initial_space = mapping['_params']['skip_initial_space']
+        except:
+            skip_initial_space = False
+        self.grid_table = SimpleCSVGrid(csv_file, delimiter, skip_last, has_header, skip_initial_space)
 
 
     def ExportFiles(self, mapping_name, output_format, output_file):
