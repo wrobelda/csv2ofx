@@ -1,8 +1,8 @@
 __author__ = 'cromo'
 
-from csvutils import SimpleCSVGrid
-from ofx import export as ofxexport
-from qif import export as qifexport
+from .csvutils import SimpleCSVGrid
+from .ofx import export as ofxexport
+from .qif import export as qifexport
 from mappings import all_mappings
 
 

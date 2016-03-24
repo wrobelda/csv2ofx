@@ -78,15 +78,15 @@
 
 """
 
-from creditunion import cu
-from msmoneyreport import msmoneyrep
-from ubs import ubs
-from yodlee import yodlee
-from tmobilekonto import tmobilepl
-from raiffeisenpolbank import raiffeisenpolbank_ccard, raiffeisenpolbank_current
-from abnamro import abnamro
-from venmo import venmo
-from squarecash import squarecash
+from .creditunion import cu
+from .msmoneyreport import msmoneyrep
+from .ubs import ubs
+from .yodlee import yodlee
+from .tmobilekonto import tmobilepl
+from .raiffeisenpolbank import raiffeisenpolbank_ccard, raiffeisenpolbank_current
+from .abnamro import abnamro
+from .venmo import venmo
+from .squarecash import squarecash
 
 all_mappings = {'T-Mobile Konto': tmobilepl, 'Yodlee': yodlee, 'Credit Union': cu, 'UBS': ubs,
                 'MS Money Report (CSV)': msmoneyrep, 'Raiffeisen Polbank Karta': raiffeisenpolbank_ccard,
