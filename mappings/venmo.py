@@ -10,8 +10,8 @@ from csv2ofx.utils import setlocale
 
 # example Venmo CSV date: Mon Aug 31 12:43:42 +0000 2015
 def toOFXDate(date):
-    with setlocale('en_US.UTF8'):
-        return datetime.strptime(date, "%a %b %d %H:%M:%S +0000 %Y").strftime('%Y%m%d')
+    with setlocale('C'):
+        return datetime.strptime(date, "%a %b %d %H:%M:%S %z %Y").strftime('%Y%m%d')
 
 def getPayee(row, grid):
     fromUsername = fromCSVCol(row, grid, 'from_full_name')
