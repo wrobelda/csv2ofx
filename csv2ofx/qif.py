@@ -21,7 +21,7 @@ def export(out, mapping, grid):
             splits = cur_parent.setdefault('splits', [])
             splits.append(tran)
 
-    for a in accounts.values():
+    for a in list(accounts.values()):
         out.write("!Account\nN%(Account)s\nD%(AccountDscr)s\n^\n!Type:Bank\n" % a)
         for t in a['trans']:
             out.write("D%(Date)s\nT%(Amount)s\nP%(Payee)s\nM%(Memo)s\nL%(Category)s/%(Class)s\n" % t)

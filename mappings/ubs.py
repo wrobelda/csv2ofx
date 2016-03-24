@@ -32,7 +32,7 @@ def ubs_toPayee(enteredby, recipient, description):
 
 
 def ubs_toDescription(desc1, desc2, desc3):
-    return ' / '.join(filter(None, [desc1, desc2, desc3]))
+    return ' / '.join([_f for _f in [desc1, desc2, desc3] if _f])
 
 
 ubs = {

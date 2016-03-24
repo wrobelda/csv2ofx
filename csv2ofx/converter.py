@@ -1,12 +1,19 @@
 __author__ = 'cromo'
 
-from csvutils import SimpleCSVGrid
-from ofx import export as ofxexport
-from qif import export as qifexport
+from .csvutils import SimpleCSVGrid
+from .ofx import export as ofxexport
+from .qif import export as qifexport
 from mappings import all_mappings
 
 
 class Converter():
+    def GetFileEncoding(self, mapping_name):
+        mapping = all_mappings[mapping_name]
+        try:
+            return mapping['_params']['encoding']
+        except:
+            return None
+
     def OpenFile(self, mapping_name, csv_file):
         """
             Takes a csv file and loads it's contents into the data table.

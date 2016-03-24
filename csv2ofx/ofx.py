@@ -25,7 +25,7 @@ def export(out, mapping, grid):
             acct['TODAY'] = today
             currency = acct.setdefault('CURDEF', mapping['CURDEF'](row, grid))
             if currency != mapping['CURDEF'](row, grid):
-                print "Currency not the same."
+                print("Currency not the same.")
             trans = acct.setdefault('trans', [])
             tran = {}
 
@@ -61,7 +61,7 @@ ENCODING:UTF-8
                'TRNUID': int(time.mktime(time.localtime()))}
     )
 
-    for acct in accounts.values():
+    for acct in list(accounts.values()):
         out.write(
             """
             <STMTRS>
