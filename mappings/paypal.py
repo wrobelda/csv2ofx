@@ -20,7 +20,7 @@ def isReceived(row, grid):
     return True if float(getAmount(row, grid)) > 0 else False
 
 def getAmount(row, grid):
-    return fromCSVCol(row, grid, 'Net').replace(",", ".")
+    return fromCSVCol(row, grid, 'Net').replace(',', '.').replace(' ', '').replace(u'\xa0', '')
 
 def getPayee(row, grid):
     type = fromCSVCol(row, grid, 'Type')
@@ -50,7 +50,8 @@ paypal = {
 
     '_params': {
         'delimiter': '\t',
-        'skip_initial_space': True
+        'skip_initial_space': True,
+        'encoding': "cp1252"
     },
 
     'OFX': {
