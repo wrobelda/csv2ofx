@@ -37,6 +37,7 @@
         delimiters (default: ','): delimiter for CSV
         skip_last (default: 0): number of lines to skip at the end of the CSV file
         has_header (default: True): is the first line of the CSV a header?
+        encoding (default: None): should specific encoding be user to read the CSV file?
 
     OFX export uses these keys:
 
