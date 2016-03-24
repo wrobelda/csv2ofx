@@ -13,6 +13,7 @@ def toOFXDate(row, grid):
     date = fromCSVCol(row, grid, 'Date')
     time = fromCSVCol(row, grid, 'Time')
     timezone = fromCSVCol(row, grid, 'Time Zone')
+    # TODO: timezone is not detected by strptime
     return datetime.strptime(date + time, "%d-%m-%Y%H:%M:%S").strftime('%Y%m%d')
 
 def isReceived(row, grid):
@@ -42,6 +43,7 @@ def getMemo(row, grid):
     auctionSite = fromCSVCol(row, grid, 'Auction Site')
     itemID = fromCSVCol(row, grid, 'Item ID')
     itemTitle = fromCSVCol(row, grid, 'Item Title')
+    # TODO: prettify formatting logic
     return '{}{}{}{}'.format( auctionSite + ' ' if auctionSite else '', 'Item ID: ' + itemID if itemID else '', '|' if (itemID and itemTitle) else '', itemTitle)
 
 paypal = {
