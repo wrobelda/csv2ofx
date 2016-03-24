@@ -37,6 +37,7 @@
         delimiters (default: ','): delimiter for CSV
         skip_last (default: 0): number of lines to skip at the end of the CSV file
         has_header (default: True): is the first line of the CSV a header?
+        skip_initial_space (default: False): should whitespace immediately following the delimiter be ignored?
         encoding (default: None): should specific encoding be user to read the CSV file?
 
     OFX export uses these keys:
@@ -88,8 +89,10 @@ from .raiffeisenpolbank import raiffeisenpolbank_ccard, raiffeisenpolbank_curren
 from .abnamro import abnamro
 from .venmo import venmo
 from .squarecash import squarecash
+from .paypal import paypal
+
 
 all_mappings = {'T-Mobile Konto': tmobilepl, 'Yodlee': yodlee, 'Credit Union': cu, 'UBS': ubs,
                 'MS Money Report (CSV)': msmoneyrep, 'Raiffeisen Polbank Karta': raiffeisenpolbank_ccard,
                 'Raiffeisen Polbank Konto': raiffeisenpolbank_current,
-                'ABN Amro': abnamro, 'Venmo': venmo, 'Square Cash' : squarecash}
+                'ABN Amro': abnamro, 'Venmo': venmo, 'Square Cash' : squarecash, 'PayPal' : paypal}
