@@ -19,6 +19,8 @@ def toOFXDate(row, grid):
 def isReceived(row, grid):
     return True if float(getAmount(row, grid)) > 0 else False
 
+
+# PayPal export has a bug that will have some transaction amounts use \xa0 instead of ' ' as a thousand delimiter
 def getAmount(row, grid):
     return fromCSVCol(row, grid, 'Net').replace(',', '.').replace(' ', '').replace(u'\xa0', '')
 
@@ -46,12 +48,16 @@ def getMemo(row, grid):
     # TODO: prettify formatting logic
     return '{}{}{}{}'.format( auctionSite + ' ' if auctionSite else '', 'Item ID: ' + itemID if itemID else '', '|' if (itemID and itemTitle) else '', itemTitle)
 
+
+# Set PayPal export encoding to UTF-8 here: https://www.paypal.com/cgi-bin/customerprofileweb?cmd=_profile-language-encoding
+# Download "Tab delimeted - balance affecting payments" report from here: https://history.paypal.com/pl/cgi-bin/webscr?cmd=_history
+
 paypal = {
 
     '_params': {
         'delimiter': '\t',
         'skip_initial_space': True,
-        'encoding': "cp1252"
+        'encoding': "UTF-8"
     },
 
     'OFX': {
