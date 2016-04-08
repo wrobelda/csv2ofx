@@ -69,7 +69,7 @@ paypal = {
         'FITID': lambda row, grid: fromCSVCol(row, grid, 'Transaction ID'),
         'PAYEE': lambda row, grid: getPayee(row, grid),
         'MEMO': lambda row, grid: getMemo(row, grid),
-        'CURDEF': lambda row, grid: 'Currency',
+        'CURDEF': lambda row, grid: fromCSVCol(row, grid, 'Currency'),
         'CHECKNUM': lambda row, grid: ''
     },
 }
