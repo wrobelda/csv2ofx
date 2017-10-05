@@ -1,9 +1,11 @@
 __author__ = 'cromo'
 
 from .csvutils import SimpleCSVGrid
+from .xlsxutils import SimpleXLSXGrid
 from .ofx import export as ofxexport
 from .qif import export as qifexport
 from mappings import all_mappings
+import os
 
 
 class Converter():
@@ -37,7 +39,16 @@ class Converter():
             skip_initial_space = mapping['_params']['skip_initial_space']
         except:
             skip_initial_space = False
-        self.grid_table = SimpleCSVGrid(csv_file, delimiter, skip_last, has_header, skip_initial_space)
+
+        if (os.path.splitext(csv_file)[1][1:].lower() in ("csv", "txt")):
+            file = open(csv_file, 'r', encoding=self.GetFileEncoding(mapping_name))
+            self.grid_table = SimpleCSVGrid(file, delimiter, skip_last, has_header, skip_initial_space)
+        elif (os.path.splitext(csv_file)[1][1:].lower() in ("xlsx", "xls")):
+            file = open(csv_file, 'rb')
+            self.grid_table = SimpleXLSXGrid(file, delimiter, skip_last, has_header, skip_initial_space)
+        else:
+            raise Exception("Unknown file type")
+
 
 
     def ExportFiles(self, mapping_name, output_format, output_file):

@@ -1,15 +1,17 @@
-from csv import reader
+from openpyxl import load_workbook
 
 
-class SimpleCSVGrid():
+class SimpleXLSXGrid():
     def __init__(self, csv_path, delimiter=',', skip_last=0, has_header=True, skip_initial_space=False):
         # delimiter, quote could come from config file perhaps
-        csv_reader = reader(csv_path, delimiter=delimiter, quotechar='"', skipinitialspace=skip_initial_space)
-        self.grid_contents = [row for row in csv_reader if len(row) > 0]
+        wb = load_workbook(filename=csv_path)
+        ws = wb.active
+
+        self.grid_contents = list(ws.values)
+
         if skip_last:
             self.grid_contents = self.grid_contents[:-skip_last]
 
-        # the 1st row is the column headers
         self.grid_cols = len(self.grid_contents[0])
         self.grid_rows = len(self.grid_contents)
 
@@ -52,6 +54,12 @@ class SimpleCSVGrid():
     def GetColPos(self, col_name):
         return self.col_map[col_name]
 
+    def HasColumn(self, col_name):
+        if self.has_header:
+            return col_name in self.col_map
+        else:
+            raise Exception('Cannot check for column presence by name - file has no header')
+
 
 def xmlize(dat):
     """
@@ -59,8 +67,7 @@ def xmlize(dat):
         replace with &amp; &lt; &gt;
         Get newlines while we're at it.
     """
-    return str(dat).replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;').replace('\r\n', ' ').replace('\n',
-                                                                                                                 ' ')
+    return dat.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;').replace('\r\n', ' ').replace('\n', ' ')
 
 
 def fromCSVCol(row, grid, column):
