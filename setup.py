@@ -7,6 +7,7 @@ setup(
  packages=['csv2ofx.py'],
  package_dir={'csv2ofx.py':'src/csv2ofx.py'},
  scripts=['csv2ofx.py'],
- package_data={'csv2ofx.py':['*.xrc']}
+    package_data={'csv2ofx.py': ['*.xrc']},
+    install_requires=['openpyxl']
 )
 
