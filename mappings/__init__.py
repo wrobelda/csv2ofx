@@ -38,6 +38,7 @@
         skip_last (default: 0): number of lines to skip at the end of the CSV file
         has_header (default: True): is the first line of the CSV a header?
         skip_initial_space (default: False): should whitespace immediately following the delimiter be ignored?
+        encoding (default: None): should specific encoding be user to read the CSV file?
 
     OFX export uses these keys:
 
