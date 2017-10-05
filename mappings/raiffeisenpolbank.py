@@ -26,7 +26,7 @@ def get_amount(row, grid):
 
     amount_normalized = amount.replace(',', '.')
 
-    return amount_normalized
+    return str(amount_normalized)
 
 def invert_value(value):
     try:
@@ -61,7 +61,7 @@ raiffeisenpolbank_ccard = {
 raiffeisenpolbank_current = {
 
     '_params': {
-        'delimiter': ';',
+        'delimiter': ',',
         'encoding': 'windows-1250',
     },
 
@@ -73,7 +73,7 @@ raiffeisenpolbank_current = {
         'DTPOSTED': lambda row, grid: fromEUtoOFXDate(fromCSVCol(row, grid, 'Data transakcji')),
         'TRNAMT': lambda row, grid: get_amount(row, grid),
         'FITID': lambda row, grid: '',
-        'PAYEE': lambda row, grid: fromCSVCol(row, grid, 'Nadawca / Odbiorca'),
+        'PAYEE': lambda row, grid: fromCSVCol(row, grid, 'Nadawca/Odbiorca'),
         'MEMO': lambda row, grid: fromCSVCol(row, grid, 'Tytuł'),
         'CURDEF': lambda row, grid: 'PLN',
         'CHECKNUM': lambda row, grid: ''
