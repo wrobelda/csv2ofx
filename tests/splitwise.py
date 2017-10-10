@@ -12,7 +12,6 @@ class TestSplitwise(unittest.TestCase):
 
     def test_splitwise(self):
         c = converter.Converter()
-        encoding = c.GetFileEncoding(self.bank_name)
 
         c.OpenFile(self.bank_name, self.infile_name)
         c.ExportFiles(self.bank_name, "QIF", self.outfile_name)
