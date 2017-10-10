@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 
-import sys
 import argparse
 import os
 
@@ -10,7 +9,7 @@ import mappings
 if __name__ == '__main__':
 
     def file_choices(choices, fname):
-        ext = os.path.splitext(fname)[1][1:].lower()
+        ext = os.path.splitext(fname)[1][1:]
         if ext not in choices:
             parser.error("file doesn't end with one of {}".format(choices))
         return fname
@@ -24,12 +23,13 @@ if __name__ == '__main__':
                         choices=list(mappings.all_mappings.keys()))
     parser.add_argument('-f', '--format', help='output file format: %(choices)s', required=True,
                         choices=['OFX', 'QIF'])
-    parser.add_argument('infile', type=lambda s: file_choices(("csv", "txt", "xlsx", "xls"), s),
+    parser.add_argument('input_file_path', type=lambda s: file_choices(("csv", "txt", "xlsx", "xls"), s),
                         help='input CSV file name; use stdin if empty')
-    parser.add_argument('outfile', nargs='?', type=argparse.FileType(mode='w', encoding='UTF-8'),
-                        default=sys.stdout, help='output file name; use stdout if empty')
     args = parser.parse_args()
 
     # convert
-    c.OpenFile(args.bank_name, args.infile)
-    c.ExportFiles(args.bank_name, args.format, args.outfile)
+    c.OpenFile(args.bank_name, args.input_file_path)
+
+    # export
+    output_file_path = os.path.splitext(args.input_file_path)[0] if args.input_file_path else 'csv2ofx parsed'
+    c.ExportFiles(args.bank_name, args.format, output_file_path)

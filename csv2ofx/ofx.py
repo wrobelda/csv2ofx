@@ -2,7 +2,7 @@ from datetime import datetime
 import time
 
 
-def export(out, mapping, grid):
+def export(output_file_path, mapping, params, grid):
     """
         path: path to save the file
         mapping: mapping selected from mappings package
@@ -39,7 +39,8 @@ def export(out, mapping, grid):
 
     # output
 
-    out.write(
+    output_file = open(output_file_path + '.ofx', 'w', encoding='UTF-8')
+    output_file.write(
 """DATA:OFXSGML
 ENCODING:UTF-8
         <OFX>
@@ -62,7 +63,7 @@ ENCODING:UTF-8
     )
 
     for acct in list(accounts.values()):
-        out.write(
+        output_file.write(
             """
             <STMTRS>
                 <CURDEF>%(CURDEF)s</CURDEF>
@@ -79,7 +80,7 @@ ENCODING:UTF-8
         )
 
         for tran in acct['trans']:
-            out.write(
+            output_file.write(
                 """
                         <STMTTRN>
                             <TRNTYPE>%(TRNTYPE)s</TRNTYPE>
@@ -90,24 +91,24 @@ ENCODING:UTF-8
                 """ % tran
             )
             if tran['CHECKNUM'] is not None and len(tran['CHECKNUM']) > 0:
-                out.write(
+                output_file.write(
                     """
                                 <CHECKNUM>%(CHECKNUM)s</CHECKNUM>
                     """ % tran
                 )
-            out.write(
+            output_file.write(
                 """
                             <NAME>%(PAYEE)s</NAME>
                             <MEMO>%(MEMO)s</MEMO>
                 """ % tran
             )
-            out.write(
+            output_file.write(
                 """
                         </STMTTRN>
                 """
             )
 
-        out.write(
+        output_file.write(
             """
                 </BANKTRANLIST>
                 <LEDGERBAL>
@@ -118,8 +119,8 @@ ENCODING:UTF-8
             """ % today
         )
 
-    out.write("</STMTTRNRS></BANKMSGSRSV1></OFX>")
-    out.close()
+    output_file.write("</STMTTRNRS></BANKMSGSRSV1></OFX>")
+    output_file.close()
 
 
 def toOFXDate(date):

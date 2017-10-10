@@ -14,9 +14,9 @@ class Converter():
         try:
             return mapping['_params']['encoding']
         except:
-            return None
+            return 'None'
 
-    def OpenFile(self, mapping_name, csv_file):
+    def OpenFile(self, mapping_name, input_file_path):
         """
             Takes a csv file and loads it's contents into the data table.
         """
@@ -40,20 +40,19 @@ class Converter():
         except:
             skip_initial_space = False
 
-        if (os.path.splitext(csv_file)[1][1:].lower() in ("csv", "txt")):
-            file = open(csv_file, 'r', encoding=self.GetFileEncoding(mapping_name))
-            self.grid_table = SimpleCSVGrid(file, delimiter, skip_last, has_header, skip_initial_space)
-        elif (os.path.splitext(csv_file)[1][1:].lower() in ("xlsx", "xls")):
-            file = open(csv_file, 'rb')
-            self.grid_table = SimpleXLSXGrid(file, delimiter, skip_last, has_header, skip_initial_space)
+        if (os.path.splitext(input_file_path)[1][1:].lower() in ("csv", "txt")):
+            input_file = open(input_file_path, 'r', encoding=self.GetFileEncoding(mapping_name))
+            self.grid_table = SimpleCSVGrid(input_file, delimiter, skip_last, has_header, skip_initial_space)
+        elif (os.path.splitext(input_file_path)[1][1:].lower() in ("xlsx", "xls")):
+            input_file = open(input_file_path, 'rb')
+            self.grid_table = SimpleXLSXGrid(input_file, delimiter, skip_last, has_header, skip_initial_space)
         else:
             raise Exception("Unknown file type")
 
-
-
-    def ExportFiles(self, mapping_name, output_format, output_file):
+    def ExportFiles(self, mapping_name, output_format, output_filename):
 
         mapping = all_mappings[mapping_name][output_format]
+        params = all_mappings[mapping_name]['_params']
 
         grid = self.grid_table
 
@@ -64,4 +63,4 @@ class Converter():
         else:
             raise Exception("Unhandled export format: %s" % format)
 
-        csv2ofx_export(output_file, mapping, grid)
+        csv2ofx_export(output_filename, mapping, params, grid)

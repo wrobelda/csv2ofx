@@ -39,6 +39,8 @@
         has_header (default: True): is the first line of the CSV a header?
         skip_initial_space (default: False): should whitespace immediately following the delimiter be ignored?
         encoding (default: None): should specific encoding be user to read the CSV file?
+        has_multiple_transactions_per_line: (default: False): enables support for split transactions that span across
+                                            multiple lines.
 
     OFX export uses these keys:
 
@@ -57,6 +59,7 @@
         CHECKNUM: check number
 
     QIF export uses these keys:
+        extra_row_iterations_to_do: tells how many more lines are part of the same transaction
         split: tells exporter this row is part of a parent transaction
             (row must have be preceded by parent) return True or False
         Account: The name of the account
@@ -90,9 +93,10 @@ from .abnamro import abnamro
 from .venmo import venmo
 from .squarecash import squarecash
 from .paypal import paypal
-
+from .splitwise import splitwise
 
 all_mappings = {'T-Mobile Konto': tmobilepl, 'Yodlee': yodlee, 'Credit Union': cu, 'UBS': ubs,
                 'MS Money Report (CSV)': msmoneyrep, 'Raiffeisen Polbank Karta': raiffeisenpolbank_ccard,
                 'Raiffeisen Polbank Konto': raiffeisenpolbank_current,
-                'ABN Amro': abnamro, 'Venmo': venmo, 'Square Cash' : squarecash, 'PayPal' : paypal}
+                'ABN Amro': abnamro, 'Venmo': venmo, 'Square Cash': squarecash, 'PayPal': paypal,
+                'Splitwise': splitwise}
