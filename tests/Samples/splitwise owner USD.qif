@@ -1,0 +1,14 @@
+!Account
+Nowner USD
+D
+^
+!Type:Bank
+D2016-05-10
+T-10.0
+Powner sent payment to john.doe
+MPayment
+Lowner USD/
+Sjohn.doe USD/
+EPayment
+$-10.0
+^

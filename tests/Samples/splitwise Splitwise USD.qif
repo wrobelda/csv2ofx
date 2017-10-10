@@ -1,0 +1,47 @@
+!Account
+NSplitwise USD
+D
+^
+!Type:Bank
+D2016-05-21
+T-34.16
+Powner paid: john.doe owes full amount
+MLiquor
+LSplitwise USD/
+Sjohn.doe USD/
+ELiquor
+$34.16
+^
+D2016-06-25
+T-69.78
+Powner paid and also spent: schmidt and kowalski owe
+MDining out
+LSplitwise USD/
+SImbalance-USD/
+EDining out
+$46.52
+Sthomas.schmidt USD/
+EDining out
+$11.63
+Sstefan.kowalski USD/
+EDining out
+$11.63
+^
+D2016-07-29
+T-138.41
+Powner paid and also spent: schmidt kowalski and alvaro owe
+MDining out
+LSplitwise USD/
+SImbalance-USD/
+EDining out
+$39.17
+Sthomas.schmidt USD/
+EDining out
+$53.54
+Sstefan.kowalski USD/
+EDining out
+$18.28
+Sjose.alvaro USD/
+EDining out
+$27.42
+^

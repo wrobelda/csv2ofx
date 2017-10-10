@@ -1,0 +1,23 @@
+!Account
+Njohn.doe USD
+D
+^
+!Type:Bank
+D2016-06-22
+T-34.16
+Pdoe sent payment to owner
+MPayment
+Ljohn.doe USD/
+SSplitwise USD/
+EPayment
+$-34.16
+^
+D2016-06-26
+T-6.65
+Pdoe paid: owner owes him part
+MGeneral
+Ljohn.doe USD/
+SImbalance-USD/
+EGeneral
+$-6.65
+^

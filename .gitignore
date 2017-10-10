@@ -4,5 +4,7 @@
 *.pjd
 *.swp
 *.ofx
+!tests/Samples/*.ofx
 *.qif
+!tests/Samples/*.qif
 .idea
