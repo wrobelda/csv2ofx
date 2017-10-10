@@ -52,6 +52,12 @@ class SimpleCSVGrid():
     def GetColPos(self, col_name):
         return self.col_map[col_name]
 
+    def HasColumn(self, col_name):
+        if self.has_header:
+            return col_name in self.col_map
+        else:
+            raise Exception('Cannot check for column presence by name - file has no header')
+
 
 def xmlize(dat):
     """

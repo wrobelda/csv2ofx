@@ -1,0 +1,13 @@
+Date,Description,Category,Cost,Currency,owner,john.doe,thomas.schmidt,stefan.kowalski,jose.alvaro
+
+2016-05-10,owner sent payment to john.doe,Payment,10.00,USD,10.00,-10.00,0.00,0.00,0.00
+2016-05-21,owner paid: john.doe owes full amount,Liquor,34.16,USD,34.16,-34.16,0.00,0.00,0.00
+2016-06-22,doe sent payment to owner,Payment,34.16,USD,-34.16,34.16,0.00,0.00,0.00
+2016-06-26,doe paid: owner owes him part,General,39.50,USD,-6.65,28.55,-10.95,-10.95,0.00
+2016-06-26,Settle all balances,General,10.95,USD,0.00,-10.95,10.95,0.00,0.00
+2016-06-23,kowalski sent payment to john.doe,Payment,10.95,USD,0.00,-10.95,0.00,10.95,0.00
+2016-06-25,owner paid and also spent: schmidt and kowalski owe,Dining out,69.78,USD,23.26,0.00,-11.63,-11.63,0.00
+2016-07-29,owner paid and also spent: schmidt kowalski and alvaro owe,Dining out,138.41,USD,99.24,0.00,-53.54,-18.28,-27.42
+
+2017-03-23,Total balance, , ,USD,142.29,0.00,-75.13,-18.28,-48.88
+
