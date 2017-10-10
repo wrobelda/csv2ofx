@@ -1,0 +1,101 @@
+Date	 Time	 Time Zone	 Name	 Type	 Status	 Currency	 Gross	 Fee	 Net	 Item Title	 
+10/10/2017	16:02:54	EDT	eBay Inc Shipping	Preapproved Payment Sent	Completed	USD	-12.4	0	-12.4		
+10/10/2017	15:09:51	EDT	eBay Inc Shipping	Preapproved Payment Sent	Completed	USD	-5.95	0	-5.95		
+10/10/2017	14:06:24	EDT	Credit Card	Credit to Credit Card	Completed	USD	-9.28	0	-9.28		
+10/10/2017	14:06:24	EDT	eBay Inc Shipping	Refund	Completed	USD	9.28	0	9.28		
+10/10/2017	14:05:51	EDT	Credit Card	Credit to Credit Card	Completed	USD	-9.83	0	-9.83		
+10/10/2017	14:05:51	EDT	eBay Inc Shipping	Refund	Completed	USD	9.83	0	9.83		
+10/7/2017	11:56:37	EDT	Merchant 1	Mobile Express Checkout Payment Sent	Completed	USD	-3.8	0	-3.8	5 Pack E27 to GU10 Lamp Light Bulb Base Socket Converter Transforming Adapter	
+10/7/2017	11:56:37	EDT	eBay Inc.	Redemption Code	Completed	USD	3.8	0	3.8		
+10/6/2017	21:12:24	EDT	Buyer 1	Express Checkout Payment Received	Completed	USD	230.05	-6.97	223.08		
+10/6/2017	19:20:02	EDT	Bank Account	Withdraw Funds to Bank Account	Completed	USD	-80.92	0	-80.92		
+10/6/2017	18:56:29	EDT	Buyer 2	Express Checkout Payment Received	Completed	USD	83.65	-2.73	80.92		
+10/6/2017	13:29:46	EDT	Credit Card	Credit to Credit Card	Completed	USD	-6.61	0	-6.61		
+10/6/2017	13:29:46	EDT	eBay Inc Shipping	Refund	Completed	USD	6.61	0	6.61		
+10/6/2017	9:43:22	EDT	Merchant 2	Mobile Express Checkout Payment Sent	Completed	USD	-125	0	-125		
+10/6/2017	9:43:22	EDT	eBay Inc.	Redemption Code	Completed	USD	125	0	125		
+10/5/2017	15:08:17	EDT	Merchant 3	Express Checkout Payment Sent	Completed	USD	-3.96	0	-3.96	E27 to E27 95mm Extend Socket Base Holder Light Bulb Lamp Cap Adapter Converter	
+10/5/2017	15:08:17	EDT	eBay Inc.	Redemption Code	Completed	USD	3.96	0	3.96		
+10/5/2017	13:16:33	EDT	Credit Card	Credit to Credit Card	Completed	USD	-50	0	-50		
+10/5/2017	13:16:33	EDT	Merchant 4	Refund	Completed	USD	50	0	50		
+9/29/2017	17:17:57	EDT	Credit Card	Credit to Credit Card	Completed	USD	-40	0	-40		
+9/29/2017	17:17:57	EDT	Merchant 5	Refund	Completed	USD	40	0	40		
+9/29/2017	16:30:41	EDT	Credit Card	Charge From Credit Card	Completed	USD	40	0	40		
+9/29/2017	16:30:41	EDT	Merchant 5	Mobile Express Checkout Payment Sent	Refunded	USD	-40	0	-40	8GB Module MEMORY  Samsung SO DIMM PC3 Laptop Ram	
+9/29/2017	14:57:15	EDT	Merchant 6	Mobile Express Checkout Payment Sent	Completed	USD	-54.5	0	-54.5	RA Tickets	
+9/29/2017	14:57:15	EDT	Credit Card	Charge From Credit Card	Completed	USD	54.5	0	54.5		
+9/28/2017	23:42:39	EDT	Credit Card	Charge From Credit Card	Completed	USD	149.99	0	149.99		
+9/28/2017	23:42:39	EDT	Metchant 7	Mobile Express Checkout Payment Sent	Completed	USD	-149.99	0	-149.99		
+9/28/2017	14:04:06	EDT	Merchant 4	Mobile Express Checkout Payment Sent	Partially Refunded	USD	-218.49	0	-218.49		
+9/28/2017	14:04:06	EDT	eBay Inc.	Redemption Code	Completed	USD	40	0	40		
+9/28/2017	14:04:06	EDT	Credit Card	Charge From Credit Card	Completed	USD	178.49	0	178.49		
+9/26/2017	9:35:30	EDT	Merchant 6	Mobile Express Checkout Payment Sent	Completed	USD	-54.5	0	-54.5	RA Tickets	
+9/26/2017	9:35:30	EDT	Credit Card	Charge From Credit Card	Completed	USD	54.5	0	54.5		
+9/25/2017	16:20:37	EDT	eBay Inc Shipping	Preapproved Payment Sent	Completed	USD	-10.07	0	-10.07		
+9/25/2017	16:20:37	EDT	Credit Card	Charge From Credit Card	Completed	USD	10.07	0	10.07		
+9/25/2017	16:19:04	EDT	eBay Inc Shipping	Preapproved Payment Sent	Refunded	USD	-9.28	0	-9.28		
+9/25/2017	16:19:04	EDT	Credit Card	Charge From Credit Card	Completed	USD	9.28	0	9.28		
+9/25/2017	13:11:17	EDT	Merchant 6	Mobile Express Checkout Payment Sent	Completed	USD	-16.9	0	-16.9	RA Tickets	
+9/25/2017	13:11:17	EDT	Credit Card	Charge From Credit Card	Completed	USD	16.9	0	16.9		
+9/25/2017	12:11:32	EDT	Credit Card	Charge From Credit Card	Completed	USD	5.8	0	5.8		
+9/25/2017	12:11:32	EDT	Merchant 8	Express Checkout Payment Sent	Completed	USD	-5.8	0	-5.8		
+9/24/2017	10:55:31	EDT	Merchant 9	Express Checkout Payment Sent	Completed	USD	-43.54	0	-43.54		
+9/24/2017	10:55:31	EDT	Credit Card	Charge From Credit Card	Completed	USD	43.54	0	43.54		
+9/23/2017	15:32:06	EDT	Merchant 10	Mobile Express Checkout Payment Sent	Completed	USD	-65.19	0	-65.19	1 ticket	
+9/23/2017	15:32:06	EDT	Credit Card	Charge From Credit Card	Completed	USD	65.19	0	65.19		
+9/22/2017	16:21:45	EDT	eBay Inc Shipping	Preapproved Payment Sent	Completed	USD	-8.95	0	-8.95		
+9/22/2017	16:21:45	EDT	Credit Card	Charge From Credit Card	Completed	USD	8.95	0	8.95		
+9/21/2017	20:41:22	EDT	Bank Account	Withdraw Funds to Bank Account	Completed	USD	-252.55	0	-252.55		
+9/21/2017	19:01:15	EDT	Buyer 3	Express Checkout Payment Received	Completed	USD	260.4	-7.85	252.55		
+9/21/2017	13:09:31	EDT	eBay Inc Shipping	Preapproved Payment Sent	Refunded	USD	-9.83	0	-9.83		
+9/21/2017	13:09:31	EDT	Credit Card	Charge From Credit Card	Completed	USD	9.83	0	9.83		
+9/21/2017	11:22:46	EDT	eBay Inc Shipping	Preapproved Payment Sent	Completed	USD	-10.46	0	-10.46		
+9/21/2017	11:22:46	EDT	Credit Card	Charge From Credit Card	Completed	USD	10.46	0	10.46		
+9/20/2017	12:48:42	EDT	eBay Inc Shipping	Preapproved Payment Sent	Refunded	USD	-6.61	0	-6.61		
+9/20/2017	12:48:42	EDT	Credit Card	Charge From Credit Card	Completed	USD	6.61	0	6.61		
+9/20/2017	1:38:37	EDT	Bank Account	Withdraw Funds to Bank Account	Completed	USD	-334.69	0	-334.69		
+9/20/2017	0:02:21	EDT	Buyer 4	Express Checkout Payment Received	Completed	USD	345	-10.31	334.69		
+9/19/2017	17:59:03	EDT	eBay Inc Shipping	Preapproved Payment Sent	Completed	USD	-10.46	0	-10.46		
+9/19/2017	17:59:03	EDT	Credit Card	Charge From Credit Card	Completed	USD	10.46	0	10.46		
+9/19/2017	15:04:53	EDT	Credit Card	Charge From Credit Card	Completed	USD	37.99	0	37.99		
+9/19/2017	15:04:53	EDT	Merchant 11	Mobile Express Checkout Payment Sent	Completed	USD	-37.99	0	-37.99		
+9/17/2017	19:33:17	EDT	Bank Account	Withdraw Funds to Bank Account	Completed	USD	-876.46	0	-876.46		
+9/17/2017	19:32:00	EDT	Buyer 5	Mobile Express Checkout Payment Received	Completed	USD	850.95	-24.98	825.97		
+9/17/2017	15:39:51	EDT	Credit Card	Charge From Credit Card	Completed	USD	29.63	0	29.63		
+9/17/2017	15:39:51	EDT	Merchant 12	Express Checkout Payment Sent	Completed	USD	-29.63	0	-29.63		
+9/13/2017	23:04:23	EDT	Credit Card	Charge From Credit Card	Completed	USD	275	0	275		
+9/13/2017	23:04:23	EDT	Merchant 13	Mobile Express Checkout Payment Sent	Completed	USD	-275	0	-275		
+9/11/2017	12:49:56	EDT	eBay Inc Shipping	Preapproved Payment Sent	Completed	USD	-6.5	0	-6.5		
+9/11/2017	8:49:54	EDT	Buyer 6	Mobile Express Checkout Payment Received	Completed	USD	59	-2.01	56.99		
+9/9/2017	9:51:23	EDT	Credit Card	Credit to Credit Card	Completed	USD	-22.64	0	-22.64		
+9/9/2017	9:51:23	EDT	Merchant 14	Refund	Completed	USD	22.64	0	22.64		
+9/6/2017	22:10:23	EDT	Merchant 15	Express Checkout Payment Sent	Completed	USD	-5.99	0	-5.99		
+9/6/2017	22:10:23	EDT	Credit Card	Charge From Credit Card	Completed	USD	5.99	0	5.99		
+9/6/2017	21:15:47	EDT	Credit Card	Credit to Credit Card	Completed	USD	-350	0	-350		
+9/6/2017	21:15:47	EDT	Merchant 16	Refund	Completed	USD	350	0	350		
+9/6/2017	21:10:16	EDT	Credit Card	Charge From Credit Card	Completed	USD	300	0	300		
+9/6/2017	21:10:16	EDT	Merchant 16	Express Checkout Payment Sent	Completed	USD	-300	0	-300		
+9/6/2017	19:43:43	EDT	Credit Card	Charge From Credit Card	Completed	USD	350	0	350		
+9/6/2017	19:43:43	EDT	Merchant 16	Express Checkout Payment Sent	Refunded	USD	-350	0	-350		
+9/6/2017	11:20:13	EDT	Merchant 17	Express Checkout Payment Sent	Completed	USD	-50.92	0	-50.92		
+9/6/2017	11:20:13	EDT	Credit Card	Charge From Credit Card	Completed	USD	50.92	0	50.92		
+8/30/2017	18:05:32	EDT	Credit Card	Charge From Credit Card	Completed	USD	"1,301.25"	0	"1,301.25"		
+8/30/2017	18:05:32	EDT	Merchant 14	Express Checkout Payment Sent	Partially Refunded	USD	"-1,301.25"	0	"-1,301.25"		
+8/28/2017	5:44:52	EDT	Credit Card	Charge From Credit Card	Completed	USD	20	0	20		
+8/28/2017	5:44:52	EDT	Merchant 18	Web Accept Payment Sent	Completed	USD	-20	0	-20		
+8/23/2017	12:49:26	EDT	Merchant 19	Mobile Express Checkout Payment Sent	Completed	USD	"-1,713.60"	0	"-1,713.60"		
+8/23/2017	12:49:26	EDT	Credit Card	Charge From Credit Card	Completed	USD	"1,713.60"	0	"1,713.60"		
+8/6/2017	23:28:39	EDT	Recipient 1	Payment Sent	Completed	USD	-21.95	0	-21.95		
+8/6/2017	23:28:39	EDT	Credit Card	Charge From Credit Card	Completed	USD	21.95	0	21.95		
+8/4/2017	12:15:29	EDT	Merchant 20	Express Checkout Payment Sent	Completed	USD	"-1,200.00"	0	"-1,200.00"		
+8/4/2017	12:15:29	EDT	Credit Card	Charge From Credit Card	Completed	USD	"1,200.00"	0	"1,200.00"		
+8/4/2017	9:59:25	EDT	Merchant 21	Mobile Express Checkout Payment Sent	Completed	USD	"-1,500.00"	0	"-1,500.00"		
+8/4/2017	9:59:25	EDT	Credit Card	Charge From Credit Card	Completed	USD	"1,500.00"	0	"1,500.00"		
+8/4/2017	7:26:57	EDT	Credit Card	Credit to Credit Card	Completed	USD	-21.95	0	-21.95		
+8/4/2017	7:26:57	EDT	Recipient 1	Refund	Completed	USD	21.95	0	21.95		
+8/3/2017	14:43:28	EDT	Merchant 22	Express Checkout Payment Sent	Completed	USD	-0.99	0	-0.99		
+8/3/2017	14:43:28	EDT	Credit Card	Charge From Credit Card	Completed	USD	0.99	0	0.99		
+8/2/2017	17:39:07	EDT	Merchant 23	Express Checkout Payment Sent	Completed	PLN	-1	0	-1		
+8/2/2017	17:39:07	EDT	From U.S. Dollar	Currency Conversion	Completed	PLN	1	0	1		
+8/2/2017	17:39:07	EDT	To Polish Zloty	Currency Conversion	Completed	USD	-0.29	0	-0.29		
+8/2/2017	17:39:07	EDT	Credit Card	Charge From Credit Card	Completed	USD	0.29	0	0.29		

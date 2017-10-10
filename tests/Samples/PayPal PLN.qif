@@ -1,0 +1,17 @@
+!Account
+NPayPal PLN
+D
+^
+!Type:Bank
+D8/2/2017
+T-1
+PMerchant 23
+MExpress Checkout Payment Sent
+LImbalance-PLN/
+^
+D8/2/2017
+T1
+PFrom U.S. Dollar
+MCurrency Conversion
+LImbalance-PLN/
+^
