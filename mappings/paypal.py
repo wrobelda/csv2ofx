@@ -86,7 +86,6 @@ def are_rows_same_transaction(first, second, grid):
     else:
         return fromCSVCol(first, grid, 'Date') == fromCSVCol(second, grid, 'Date') \
                and fromCSVCol(first, grid, 'Time') == fromCSVCol(second, grid, 'Time') \
-               and fromCSVCol(first, grid, 'TimeZone') == fromCSVCol(second, grid, 'TimeZone') \
                and fromCSVCol(first, grid, 'Currency') == fromCSVCol(second, grid, 'Currency')
 
 
