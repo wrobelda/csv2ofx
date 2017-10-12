@@ -2,10 +2,12 @@ from csv import reader
 
 
 class SimpleCSVGrid():
-    def __init__(self, csv_path, delimiter=',', skip_last=0, has_header=True, skip_initial_space=False):
+    def __init__(self, csv_path, delimiter=',', skip_first=0, skip_last=0, has_header=True, skip_initial_space=False):
         # delimiter, quote could come from config file perhaps
         csv_reader = reader(csv_path, delimiter=delimiter, quotechar='"', skipinitialspace=skip_initial_space)
         self.grid_contents = [row for row in csv_reader if len(row) > 0]
+        if skip_first:
+            self.grid_contents = self.grid_contents[skip_first:]
         if skip_last:
             self.grid_contents = self.grid_contents[:-skip_last]
 

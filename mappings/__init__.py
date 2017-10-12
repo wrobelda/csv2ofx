@@ -35,6 +35,7 @@
     Special parameters for import use these keys:
 
         delimiters (default: ','): delimiter for CSV
+        skip_first (default: 0): number of lines to skip at the beginning of the CSV file
         skip_last (default: 0): number of lines to skip at the end of the CSV file
         has_header (default: True): is the first line of the CSV a header?
         skip_initial_space (default: False): should whitespace immediately following the delimiter be ignored?

@@ -28,6 +28,10 @@ class Converter():
         except:
             delimiter = ','
         try:
+            skip_first = mapping['_params']['skip_first']
+        except:
+            skip_first = 0
+        try:
             skip_last = mapping['_params']['skip_last']
         except:
             skip_last = 0
@@ -42,7 +46,9 @@ class Converter():
 
         if (os.path.splitext(input_file_path)[1][1:].lower() in ("csv", "txt")):
             input_file = open(input_file_path, 'r', encoding=self.GetFileEncoding(mapping_name))
-            self.grid_table = SimpleCSVGrid(input_file, delimiter, skip_last, has_header, skip_initial_space)
+            self.grid_table = SimpleCSVGrid(input_file, delimiter, skip_first=skip_first, skip_last=skip_last,
+                                            has_header=has_header,
+                                            skip_initial_space=skip_initial_space)
         elif (os.path.splitext(input_file_path)[1][1:].lower() in ("xlsx", "xls")):
             input_file = open(input_file_path, 'rb')
             self.grid_table = SimpleXLSXGrid(input_file, delimiter, skip_last, has_header, skip_initial_space)
