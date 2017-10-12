@@ -58,7 +58,7 @@ class Converter():
     def ExportFiles(self, mapping_name, output_format, output_filename):
 
         mapping = all_mappings[mapping_name][output_format]
-        params = all_mappings[mapping_name]['_params']
+        params = all_mappings[mapping_name]['_params'] if '_params' in all_mappings[mapping_name] else []
 
         grid = self.grid_table
 
