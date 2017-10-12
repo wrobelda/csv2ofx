@@ -14,7 +14,7 @@ class Converter():
         try:
             return mapping['_params']['encoding']
         except:
-            return 'None'
+            return None
 
     def OpenFile(self, mapping_name, input_file_path):
         """
