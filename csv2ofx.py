@@ -31,5 +31,6 @@ if __name__ == '__main__':
     c.OpenFile(args.bank_name, args.input_file_path)
 
     # export
-    output_file_path = os.path.splitext(args.input_file_path)[0] if args.input_file_path else 'csv2ofx parsed'
+    output_file_path = os.path.splitext(os.path.abspath(args.input_file_path))[
+        0] if args.input_file_path else 'csv2ofx parsed'
     c.ExportFiles(args.bank_name, args.format, output_file_path)
