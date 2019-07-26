@@ -87,40 +87,46 @@ def get_amount(row, grid, iteration):
 
 
 def get_all_transaction_splits(row, grid):
+    splitwise_main_acc_name = 'Splitwise ' + fromCSVCol(row, grid, 'Currency')
+    payee_account_name = find_who_paid(row, grid)[0] + ' ' + fromCSVCol(row, grid, 'Currency')
+    imbalance_acc_name = 'Imbalance-' + fromCSVCol(row, grid, 'Currency')
+
     splits = []
 
     # add main transaction entry
 
     if does_owner_owe(row, grid) and not is_payment_transaction(row, grid):
-        main_id = find_who_paid(row, grid)[0] + ' ' + fromCSVCol(row, grid, 'Currency')
+        main_id = payee_account_name
         main_value = float(fromCSVCol(row, grid, get_owners_column_name())) * -1
     elif does_owner_receive_payment(row, grid):
         main_id = find_who_paid(row, grid)[0] + ' ' + fromCSVCol(row, grid, 'Currency')
         main_value = float(fromCSVCol(row, grid, get_owners_column_name())) * -1
     elif does_owner_send_payment(row, grid):
-        main_id = find_who_paid(row, grid)[0] + ' ' + fromCSVCol(row, grid, 'Currency')
+        main_id = payee_account_name
         main_value = float(fromCSVCol(row, grid, get_owners_column_name()))
     else:
-        main_id = 'Splitwise ' + fromCSVCol(row, grid, 'Currency')
+        main_id = splitwise_main_acc_name
         main_value = float(fromCSVCol(row, grid, 'Cost'))
 
     splits.append((main_id, main_value))
 
     # add splits
     for participant_and_amount in get_all_participants_and_amounts(row, grid):
+        participant_acc_name = participant_and_amount[0] + ' ' + fromCSVCol(row, grid, 'Currency')
+
         if participant_and_amount[0] == get_owners_column_name():
             if has_owner_paid_and_spent(row, grid):
                 split_value = round(participant_and_amount[1] - main_value, 2)
-                split_id = 'Imbalance-' + fromCSVCol(row, grid, 'Currency')
+                split_id = imbalance_acc_name
             elif does_owner_owe(row, grid) and not is_payment_transaction(row, grid):
                 split_value = participant_and_amount[1] * -1
-                split_id = 'Imbalance-' + fromCSVCol(row, grid, 'Currency')
+                split_id = imbalance_acc_name
             elif is_payment_transaction(row, grid):
                 if does_owner_send_payment(row, grid):
-                    continue  # already included in main transaction
+                    continue  # owner split is already reflected in main transaction
 
                 split_value = participant_and_amount[1] * -1
-                split_id = 'Splitwise ' + fromCSVCol(row, grid, 'Currency')
+                split_id = splitwise_main_acc_name
             else:
                 continue
         elif does_owner_owe(row, grid) and not is_payment_transaction(row, grid):
@@ -128,10 +134,10 @@ def get_all_transaction_splits(row, grid):
         elif does_owner_receive_payment(row, grid):
             continue
         elif does_owner_send_payment(row, grid):
-            split_id = participant_and_amount[0] + ' ' + fromCSVCol(row, grid, 'Currency')
+            split_id = participant_acc_name
             split_value = participant_and_amount[1] * -1
         else:
-            split_id = participant_and_amount[0] + ' ' + fromCSVCol(row, grid, 'Currency')
+            split_id = participant_acc_name
             split_value = participant_and_amount[1]
 
         splits.append((split_id, split_value))
@@ -160,8 +166,8 @@ def get_all_participants_and_amounts(row, grid):
     return participants
 
 
-# Export CSV for both groups *and* friends, as each CSV will contain unique transactions
-# Set your owners name
+# 1. Export CSV for both groups *and* friends, as each CSV will contain unique transactions
+# 2. Set your owners name
 
 splitwise = {
 
