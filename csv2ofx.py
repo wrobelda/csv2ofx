@@ -9,7 +9,7 @@ import mappings
 if __name__ == '__main__':
 
     def file_choices(choices, fname):
-        ext = os.path.splitext(fname)[1][1:]
+        ext = os.path.splitext(fname)[1][1:].lower()
         if ext not in choices:
             parser.error("file doesn't end with one of {}".format(choices))
         return fname
@@ -31,5 +31,5 @@ if __name__ == '__main__':
     c.OpenFile(args.bank_name, args.input_file_path)
 
     # export
-    output_file_path = os.path.splitext(args.input_file_path)[0] if args.input_file_path else 'csv2ofx parsed'
+    output_file_path = os.path.splitext(os.path.abspath(args.input_file_path))[0] if args.input_file_path else 'csv2ofx_parsed'
     c.ExportFiles(args.bank_name, args.format, output_file_path)
