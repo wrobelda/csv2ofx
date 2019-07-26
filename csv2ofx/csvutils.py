@@ -79,4 +79,4 @@ def fromCSVCol(row, grid, column):
         position = grid.GetColPos(column)
     else:
         position = column
-    return xmlize(grid.GetValue(row, position))
+    return xmlize(grid.GetValue(row, position)).strip()
