@@ -43,7 +43,8 @@ def export(output_filename, mapping, params, grid):
             ++iteration
 
     for a in list(accounts.values()):
-        output_file_path = output_filename + ' ' + a['Account'] + '.qif'
+        account_name = a['Account'].encode("ascii", 'ignore').decode("utf-8")
+        output_file_path = output_filename + ' ' + account_name + '.qif'
         os.makedirs(os.path.dirname(output_file_path), exist_ok=True)
 
         output_file = open(output_file_path, 'w', encoding='UTF-8')
