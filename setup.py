@@ -8,5 +8,5 @@ setup(
     package_dir={'csv2ofx.py': 'src/csv2ofx.py'},
     scripts=['csv2ofx.py'],
     package_data={'csv2ofx.py': ['*.xrc']},
-    install_requires=['openpyxl']
+    install_requires=['openpyxl', 'python-dateutil']
 )
