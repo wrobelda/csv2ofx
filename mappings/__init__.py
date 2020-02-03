@@ -97,10 +97,11 @@ from .paypal import paypal
 from .splitwise import splitwise
 from .eBay import ebay
 from .mbank import mBank_current, mBank_eMakler
+from .bnpparibaspolska import bnpparibaspolska
 
 all_mappings = {'T-Mobile Konto': tmobilepl, 'Yodlee': yodlee, 'Credit Union': cu, 'UBS': ubs,
                 'MS Money Report (CSV)': msmoneyrep, 'Raiffeisen Polbank Karta': raiffeisenpolbank_ccard,
                 'Raiffeisen Polbank Konto': raiffeisenpolbank_current,
                 'ABN Amro': abnamro, 'Venmo': venmo, 'Square Cash': squarecash, 'PayPal': paypal,
-                    'Splitwise': splitwise, 'eBay': ebay, 'mBank Konto': mBank_current, 'mBank eMakler': mBank_eMakler,
-                'Nest Konto': nest}
+                'Splitwise': splitwise, 'eBay': ebay, 'mBank Konto': mBank_current, 'mBank eMakler': mBank_eMakler,
+                'Nest Konto': nest, 'BNP Paribas Polska': bnpparibaspolska}
