@@ -38,7 +38,7 @@ bnpparibaspolska = {
         'FITID': lambda row, grid: '',
         'PAYEE': lambda row, grid: get_payee(row, grid),
         'MEMO': lambda row, grid: get_memo(row, grid),
-        'CURDEF': lambda row, grid: 'PLN',
+        'CURDEF': lambda row, grid: fromCSVCol(row, grid, 'Waluta'),
         'CHECKNUM': lambda row, grid: ''
     },
 }
